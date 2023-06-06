@@ -1,8 +1,10 @@
 // controller -->
 module.exports.home = function(req , resp){
-    // return resp.end('<h1>Express is up for Codeial !</h1>');
+    console.log(req.cookies);
+    // changing cookie on server side -->
+    resp.cookie('Tony Stark', 45);
     return resp.render('home', {   
-        title : 'Home'
+        title : 'Codeial | Home'
     });
 
 }
