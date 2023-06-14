@@ -1,0 +1,50 @@
+#S-h{
+    color: black;
+    position: relative;
+    top: 10px;
+    text-align: center;
+}
+
+.formm{
+    height: 80vh;
+
+}
+
+#formss{
+    position: absolute;
+    top: 129px;
+   
+}
+
+.submit{
+    color: black;
+}
+
+form{
+    background-color: rgb(92, 92, 216);
+    width: 50vw;
+    height: 37vh;
+    margin: auto;
+    padding: 30px;
+    padding-right: 60px;
+    position: relative;
+    top: 30px;
+    left: 309px;
+}
+
+input{
+    padding: 8px;
+    width: 97%;
+    margin: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+#bttn{
+    width: 200px;
+    position: relative;
+    left: 240px;
+}
+
+#bttn:hover{
+    background-color: grey;
+}

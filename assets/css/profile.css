@@ -1,93 +1,18 @@
 body{
-    font-family: sans-serif;
+    background-color: aqua;
 }
 
-h1{
-    text-align: center;
+.profile{
+    height: 83vh;
 }
 
-.dis{
-    text-align: center;
+.profile h1 {
+    position: relative;
+    top: 23px;
 }
 
-.outer{
-    height: 500px;
-    width: 850px;
-    border: 2px solid black;
-    margin: auto;
-}
-
-#disc-input{
-    border: none;
-}
-
-.catanddate{
-    display: flex;
-}
-
-#category{
-    margin-left: 215px;
-    border: none;
-}
-
-.cat{
-    height: 100px;
-    width: 425px;
-    /* border: 2px solid green; */
-}
-
-.cat h3{
-    margin-top: 5px;
-}
-.date h3{
-    margin-top: 5px;
-}
-
-.date{
-    height: 100px;
-    width: 425px;
-    /* border: 2px solid green; */
-}
-
-#dateid{
-    /* margin-left: 215px; */
-}
-
-
-.buttons{
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-    height: 85px;
-}
-
-.addtask #btn{
-    height: 56px;
-    width: 145px;
-    background-color: black;
-    color: white;
-    margin-left: -153px;
-
-}
-
-.delete #btn2{
-    
-    height: 56px;
-    width: 145px;
-    background-color: rgb(238, 3, 3);
-    color: white;
-    position: absolute;
-    margin-left: 4px;
-}
-
-
-
-i{
-    height: 10px;
-    margin-left: -27px;
-    /* background-color: grey; */
-}
-
-#hh{
-    color: blue;
-}
+.profile p{
+    position: relative;
+    top: 50px;
+    font-weight: bold;
+} 

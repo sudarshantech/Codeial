@@ -1,0 +1,12 @@
+footer .foot{
+    text-align: center;
+    background-color: grey;
+    height: 50px;
+}
+
+.foot h2{
+    padding: 12px;
+}
+body{
+    color: black;
+}

@@ -19,6 +19,8 @@ router.use('/users' , require('./users'));
 // users url showing --->
 router.use('/users',postsController.postProfile);
 
+// posts router importing
+router.use('/posts', require('./posts'));
 
 // exporting router
 module.exports = router;

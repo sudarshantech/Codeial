@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    /* color: white; */
+    font-family: sans-serif;
+}
+#h22{
+    background-color: blue;
+    display: flex;
+    height: 40px;
+    padding: 9px;
+    justify-content: space-between;
+}
+
+.h2-head{
+    padding: 3px;
+    color: white;
+}
+
+
+ul li a{
+   
+    text-decoration: none;
+    color: white;
+}
+li{
+    padding: 0px  12px;
+}
+
+ul{
+    display: flex;
+    list-style-type: none;
+    padding: 9px;
+}
+
