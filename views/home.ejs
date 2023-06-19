@@ -16,63 +16,17 @@
 
         <h3 id="y-posts">Your Posts</h3>
         <div class="poster">
-            <% for (post of posts) { %>
+
             <ul>
+                <% for (post of posts) {%>
 
-                    <li>
-                        <p>
-                            <!--  putting check that only logged in user can delete the posts and user who created post only that user is allow to delete the post  -->
-                            <!-- locals.user = if user is logged in only  -->
-                            <!-- locals.user.id == post.user.id  = if signed in user is equals to a user who created a post -->
-                            <% if(locals.user && locals.user.id==post.user.id){ %>
-                                <small>
-                                    <a href="posts/destroy/<%= post.id %>">X</a>
-                                </small>
-                                <%}%>
-                                    <%= post.content %>
-                                        <small>
-                                            <%= post.user.name %>
-                                        </small>
-                        </p>
-                        <div class="post-commets">
-                            <% if(locals.user){%>
-                                <form action="/comments/create" method="post">
-                                    <input type="text" name="content" placeholder="Comment..." required>
-                                    <input type="hidden" name="post" value="<%= post._id %>" required>
-                                    <input type="submit" value="Add comment">
-                                </form>
-                                <%}%>
+                    <!-- including Posts file _posts -->
 
-                                    <!-- Showing the comments in front of users in home.ejs  -->
-                                    <div class="post-comment-list">
-                                        <ul id="post-commet-<%= post._id %>">
-                                            <% for(comment of post.comments){%>
+                    <%- include('_posts') -%>
 
-                                                <% if(locals.user && locals.user.id==comment.user.id){%>
-                                                    <small id="s-c">
-                                                        <a href="comments/destroy/<%= comment.id %>">X</a>
-                                                    </small>
-                                                    <%}%>
-                                                        <p>
-                                                            <%= comment.content %>
-                                                                <br>
-                                                                <small>
-                                                                    <%= comment.user.name %>
-                                                                </small>
-                                                        </p>
-                                                        <br>
-
-
-                                                        <%} %>
-                                        </ul>
-                                    </div>
-                        </div>
-                    </li>
-
-
-                </ul>
-            </div>
-            <%}%>
+                        <%}%>
+            </ul>
+        </div>
 </div>
 <%}%>
 
