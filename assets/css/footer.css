@@ -10,3 +10,8 @@ footer .foot{
 body{
     color: black;
 }
+
+footer{
+    position: relative;
+    top: 125px;
+}

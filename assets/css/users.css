@@ -1,9 +1,14 @@
 .users-h h1{
     color: black;
-    height: 86vh;  
+    height: 58vh;  
 }
 
 #U-h{
     position: relative;
     top: 10px;
+}
+
+#create-post{
+    position: relative;
+    top: -274px;
 }

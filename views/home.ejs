@@ -5,25 +5,68 @@
     <% if(locals.user){ %>
 
         <section id="feed-posts">
-            <h4>Posts</h4>
+            <h4 class="f-h">Create Posts</h4>
             <form action="/posts/create" method="post" id="new-post-form">
-                <textarea name="content" cols="30" rows="3" placeholder="Type Here ...." required></textarea>
-                <input type="submit" value="Post">
+                <textarea name="content" cols="30" rows="3" class="t-area" placeholder="Type Here ...."
+                    required></textarea>
+                <input type="submit" value="Post" id="btn-post">
             </form>
         </section>
         <br>
 
-        <% for (let i of posts) { %>
-            <div class="poster">
-                <ul>
+        <h3 id="y-posts">Your Posts</h3>
+        <div class="poster">
+            <% for (post of posts) { %>
+            <ul>
 
                     <li>
                         <p>
-                            <%= i.content %>
+                            <!--  putting check that only logged in user can delete the posts and user who created post only that user is allow to delete the post  -->
+                            <!-- locals.user = if user is logged in only  -->
+                            <!-- locals.user.id == post.user.id  = if signed in user is equals to a user who created a post -->
+                            <% if(locals.user && locals.user.id==post.user.id){ %>
                                 <small>
-                                    <%= i.user.name %>
+                                    <a href="posts/destroy/<%= post.id %>">X</a>
                                 </small>
+                                <%}%>
+                                    <%= post.content %>
+                                        <small>
+                                            <%= post.user.name %>
+                                        </small>
                         </p>
+                        <div class="post-commets">
+                            <% if(locals.user){%>
+                                <form action="/comments/create" method="post">
+                                    <input type="text" name="content" placeholder="Comment..." required>
+                                    <input type="hidden" name="post" value="<%= post._id %>" required>
+                                    <input type="submit" value="Add comment">
+                                </form>
+                                <%}%>
+
+                                    <!-- Showing the comments in front of users in home.ejs  -->
+                                    <div class="post-comment-list">
+                                        <ul id="post-commet-<%= post._id %>">
+                                            <% for(comment of post.comments){%>
+
+                                                <% if(locals.user && locals.user.id==comment.user.id){%>
+                                                    <small id="s-c">
+                                                        <a href="comments/destroy/<%= comment.id %>">X</a>
+                                                    </small>
+                                                    <%}%>
+                                                        <p>
+                                                            <%= comment.content %>
+                                                                <br>
+                                                                <small>
+                                                                    <%= comment.user.name %>
+                                                                </small>
+                                                        </p>
+                                                        <br>
+
+
+                                                        <%} %>
+                                        </ul>
+                                    </div>
+                        </div>
                     </li>
 
 
@@ -33,9 +76,12 @@
 </div>
 <%}%>
 
-
+    <!--  -->
     <%if(!locals.user){%>
         <div class="body">
 
+
         </div>
         <%}%>
+
+            </div>

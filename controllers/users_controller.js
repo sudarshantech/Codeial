@@ -50,7 +50,7 @@ module.exports.Signup = function (req, resp) {
 
 // rendering sign in url
 module.exports.signIn = function (req, resp) {
-    // if user is signed in already and he is going to access sign in page again but we dont want that
+    // if user is signed in already and he is going to access sign in page again but we don't want that
     if (req.isAuthenticated()) {
         return resp.redirect('/users/profile');
     }

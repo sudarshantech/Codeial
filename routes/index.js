@@ -22,5 +22,8 @@ router.use('/users',postsController.postProfile);
 // posts router importing
 router.use('/posts', require('./posts'));
 
+// Comment router Importing 
+router.use('/comments', require('./comments'));
+
 // exporting router
 module.exports = router;
