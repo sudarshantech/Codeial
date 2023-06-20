@@ -11,26 +11,37 @@
                     required></textarea>
                 <input type="submit" value="Post" id="btn-post">
             </form>
-        </section>
-        <br>
 
-        <h3 id="y-posts">Your Posts</h3>
-        <div class="poster">
+            <br>
 
-            <ul>
-                <% for (post of posts) {%>
+            <h3 id="y-posts">Your Posts</h3>
+            <div class="poster">
 
-                    <!-- including Posts file _posts -->
+                <ul>
+                    <% for (post of posts) {%>
 
-                    <%- include('_posts') -%>
+                        <!-- including Posts file _posts -->
 
-                        <%}%>
-            </ul>
-        </div>
+                        <%- include('_posts') -%>
+
+                            <%}%>
+                </ul>
+            </div>
 </div>
-<%}%>
+</section>
 
-    <!--  -->
+<section id="user-friends">
+    <h4>Friends</h4>
+    <% for(u of all_users) {%>
+        <!-- here after doing following we have to go routes users and change :id in profile above -->
+        <p>
+            <a href="/users/profile/<%= u.id %>"><%= u.name %></a>
+        </p>
+        <%}%>
+</section>
+
+<%}%>
+    
     <%if(!locals.user){%>
         <div class="body">
 

@@ -1,5 +1,8 @@
 const Post =  require('../models/post');
 const Comment = require('../models/comments');
+const User = require('../models/users');
+
+
 // controller -->
 module.exports.home = function(req , resp){
     // console.log(req.cookies);
@@ -27,11 +30,16 @@ module.exports.home = function(req , resp){
     })
 
     .exec(function(err, posts){
-        console.log(posts);
-        return resp.render('home', {   
-            title : 'Codeial | Home',
-            posts : posts
-        });
+
+        // showing the users name in home.ejs
+        User.find({}, function(err, users){
+            console.log(posts);
+            return resp.render('home', {   
+                title : 'Codeial | Home',
+                posts : posts,
+                all_users : users
+            });
+        })
 
     })
 

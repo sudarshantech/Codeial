@@ -1,0 +1,35 @@
+[33mcommit 0369abfa4c617d822cd62bd3c8d973dc92276f23[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Sudarshan <sudarshanpatil426421@gmail.com>
+Date:   Tue Jun 20 01:40:39 2023 +0530
+
+    added partial files to posts and comments made it easy
+
+[33mcommit 1c5255a4e99caea74be9980f02dee2b333affbcd[m
+Author: Sudarshan <sudarshanpatil426421@gmail.com>
+Date:   Mon Jun 19 16:08:05 2023 +0530
+
+    added post comments and deleting comments if authorized only
+
+[33mcommit 8bf49c7ccadb77ba24358e7451f61cd6c6087cf2[m
+Author: Sudarshan <sudarshanpatil426421@gmail.com>
+Date:   Thu Jun 15 12:59:33 2023 +0530
+
+    Showed Posts In Home And Along With Author And Populated With DB
+
+[33mcommit 24eff9a4c2ba899de22d68920371a0b73a575374[m
+Author: Sudarshan <sudarshanpatil426421@gmail.com>
+Date:   Wed Jun 14 22:55:15 2023 +0530
+
+    setuped a Post form and Connected to DB
+
+[33mcommit 38fe7b17656227d90fe931b09c2c068001c1ef13[m
+Author: Sudarshan <sudarshanpatil426421@gmail.com>
+Date:   Tue Jun 6 21:52:14 2023 +0530
+
+    setup Sign up page and connected to mongodb databsess
+
+[33mcommit 69fa7833e4bf5b63b15786abcf13ee00993a8aa9[m
+Author: Sudarshan <sudarshanpatil426421@gmail.com>
+Date:   Sun Jun 4 19:58:30 2023 +0530
+
+    setup static files access for layouts and pages

@@ -14,10 +14,15 @@ module.exports.postProfile = function (req, resp) {
 // and showing details of signed user in profile.ejs -->
 // and if not signed it does not show profile page in browser -->
 module.exports.Profile = function (req, resp) {
-    return resp.render('Profile', {
-        title: "Profile",
-        // user: user
+    User.findById(req.params.id, function(err, user){
+        return resp.render('Profile', {
+            title: "Profile",
+            // user: user
+            profile_user : user
+        })
+
     })
+   
 
     // show details of signed user --->
     // if (req.cookies.user_id) {
