@@ -10,6 +10,12 @@ const passportLocal = require('./config/passport-local-strategy');
 // cookie storing in mongodb 
 const MongoStore = require('connect-mongo')(session);
 
+// flash messages require library --->
+const flash = require('connect-flash');
+// importing flash middleware
+const customMware = require('./config/middleware');
+
+
 //  due to error by installing node sass middleware -->
 // const sassMiddleware = require('sass');
 // app.use(sassMiddleware({
@@ -88,6 +94,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+
+// telling express js to use connect flash messages and we have to put it down cookies session down because it uses cookies
+app.use(flash());
+// to use imported middleware -->
+app.use(customMware.setFlash);
 
 
 

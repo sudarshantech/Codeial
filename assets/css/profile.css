@@ -1,5 +1,6 @@
 body{
     background-color: aqua;
+    color: black;
 }
 
 .profile{
@@ -16,3 +17,8 @@ body{
     top: 50px;
     font-weight: bold;
 } 
+
+#update-form{
+    position: relative;
+    top:100px ;
+}

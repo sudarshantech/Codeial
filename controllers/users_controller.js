@@ -14,15 +14,33 @@ module.exports.postProfile = function (req, resp) {
 // and showing details of signed user in profile.ejs -->
 // and if not signed it does not show profile page in browser -->
 module.exports.Profile = function (req, resp) {
-    User.findById(req.params.id, function(err, user){
+    User.findById(req.params.id, function (err, user) {
         return resp.render('Profile', {
             title: "Profile",
             // user: user
-            profile_user : user
+            profile_user: user
         })
 
     })
-   
+
+    // Update Controller
+    module.exports.update = function (req, resp) {
+
+        // if current logged in user matches then -->
+        if (req.user.id == req.params.id) {
+
+            User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
+                console.log(err);
+
+                return resp.redirect('back');
+            });
+
+        } else {
+            return resp.status(401).send('Unauthorized');
+        }
+
+    }
+
 
     // show details of signed user --->
     // if (req.cookies.user_id) {
@@ -126,7 +144,10 @@ module.exports.create = function (req, resp) {
 // above code we do not use because we are using passport js
 // sign in and create session for user -->
 module.exports.createSession = function (req, resp) {
-    return resp.redirect('/users');
+    // here we have to send this request flash messages to response page for this we create our own middleware in
+    req.flash('success', 'Logged In Successfully');
+    // return resp.redirect('/users');
+    return resp.redirect('/');
 }
 
 // log out 
@@ -137,9 +158,10 @@ module.exports.destroySession = function (req, resp, next) {
             if (err) {
                 return next(err);
             } else {
-                return resp.redirect('/users/sign-in');
+                return resp.redirect('/');
             }
         });
+
     }
     //     req.logout();
 

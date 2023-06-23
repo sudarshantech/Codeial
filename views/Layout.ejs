@@ -8,7 +8,10 @@
     <title>
         <%= title %>
     </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
     <link rel="stylesheet" href="/css/layouts.css">
+
     <%- style %>
 </head>
 
@@ -16,14 +19,48 @@
 
     <%- include('_header'); %>
 
+        <!-- to access flash messages in our layout -->
+        <!-- following code we will comment and no use because we are going to use noty js pop message of flash messages -->
+        <!-- <% if(flash.success && flash.success.length > 0){ %>
+        <h5>
+            <%= flash.success %>
+        </h5>
+
+    <%}%> -->
+
         <%- body %>
 
             <%- include('_footer'); %>
 
                 <%- script %>
 
-                
-                <script src="/js/signout.js"></script>
+
+                    <script>
+                        // Flash Noty Messages for success
+                    <% if (flash.success && flash.success.length > 0) { %>
+                            new Noty({
+                                theme: 'relax',
+                                text: "<%= flash.success %>",
+                                type: 'success',
+                                layout: 'topRight',
+                                timeout: 1500
+                            }).show();
+                    <%}%>
+
+                    // flash Noty Messages for Error
+                    <% if (flash.error && flash.error.length > 0) { %>
+                            new Noty({
+                                theme: 'relax',
+                                text: "<%= flash.error %>",
+                                type: 'error',
+                                layout: 'topRight',
+                                timeout: 1500
+                            }).show();
+                    <%}%>
+
+                    </script>
+
+                    <!-- <script src="/js/signout.js"></script> -->
 </body>
 
 </html>

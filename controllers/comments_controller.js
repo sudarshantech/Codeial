@@ -18,6 +18,7 @@ module.exports.create = function (req, resp) {
                 // Handle Error -->
                 if (err) {
                     console.log("error in creating Comment");
+                    
                     return;
                 }
 
@@ -25,6 +26,7 @@ module.exports.create = function (req, resp) {
                 // this comment is pushed to Post and this is automatically fetch out the id and push it
                 // and when we update something we have to save it 
                 console.log("Commented Successfully: ", comment);
+                req.flash('success', 'Commented Successful');
                 post.comments.push(comment);
                 post.save();
 
@@ -50,6 +52,7 @@ module.exports.destroy = function (req, resp) {
         if (comment.user == req.user.id) {
 
             console.log("Comment deleted successfully: ", comment);
+            req.flash('error', 'Your Comment Deleted !');
 
             let postId = comment.post;
 
