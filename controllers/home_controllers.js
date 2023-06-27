@@ -25,6 +25,7 @@ module.exports.home = async function (req, resp) {
     // Error handling with try Catch --<
     try {
         let posts = await Post.find({})
+            .sort('-createdAt')
             .populate('user')
             .populate({
                 path: 'comments',
@@ -36,20 +37,20 @@ module.exports.home = async function (req, resp) {
 
         // showing the users name in home.ejs
         let users = await User.find({});
-        console.log("ALL POSTS : ",posts);
-        console.log("All Signed Users : ",users);
+        console.log("ALL POSTS : ", posts);
+        console.log("All Signed Users : ", users);
         return resp.render('home', {
             title: 'Codeial | Home',
             posts: posts,
             all_users: users
-            
+
         });
-        
+
     } catch (err) {
         console.log("Error", err);
         return;
 
     }
-    
+
 
 }

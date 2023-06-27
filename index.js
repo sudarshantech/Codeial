@@ -45,6 +45,10 @@ app.use(express.urlencoded());
 // importing static files -->
 app.use(express.static('./assets'));
 
+// directly it will not get file path to browser so we have to set the file path by following code--->
+// make the uploads path available to the browser
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 
 // setting ejs View-Engine  ---->
 app.set('view engine', 'ejs');

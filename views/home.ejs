@@ -15,8 +15,7 @@
 
                 <br>
 
-                <h3 id="y-posts">Your Posts</h3>
-                <div class="poster">
+                <div id="Post-list-container">
 
                     <ul>
                         <% for (post of posts) {%>
@@ -32,7 +31,7 @@
         </div>
 
         <section id="user-friends">
-            <h4>Friends</h4>
+            <h4>Friends :</h4>
             <% for(u of all_users) {%>
                 <!-- here after doing following we have to go routes users and change :id in profile above -->
                 <p>
@@ -53,5 +52,5 @@
 
         </div>
         <%}%>
-
+<script src="/js/home_posts.js"></script>
             

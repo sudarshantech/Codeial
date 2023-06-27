@@ -1,13 +1,14 @@
 <link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/_posts.css">
 
-<li>
+<li id="post-<%=post._id%>">
     <p>
         <!--  putting check that only logged in user can delete the posts and user who created post only that user is allow to delete the post  -->
         <!-- locals.user = if user is logged in only  -->
         <!-- locals.user.id == post.user.id  = if signed in user is equals to a user who created a post -->
         <% if(locals.user && locals.user.id==post.user.id){ %>
             <small>
-                <a href="posts/destroy/<%= post.id %>">X</a>
+                <a class="delete-post-button" href="posts/destroy/<%= post.id %>">X</a>
             </small>
             <%}%>
                 <%= post.content %>

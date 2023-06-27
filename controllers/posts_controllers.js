@@ -4,10 +4,22 @@ const Comment = require('../models/comments');
 module.exports.create =async function (req, resp) {
     if (req.isAuthenticated()) {
         try {
-            await Posts.create({
+           let post = await Posts.create({
                 content: req.body.content,
                 user: req.user._id
             });
+
+            // here we receives posts in xml Http Request == xhr then we will return json file 
+            // we have send the data in home_posts with ajax and here we receives
+            if(req.xhr){
+                return resp.status(200).json({
+                    data : {
+                        post : post
+                    },
+                    message : "Post Created !"
+
+                });
+            }
             req.flash('success', 'Post Published !')
             return resp.redirect('back');
             

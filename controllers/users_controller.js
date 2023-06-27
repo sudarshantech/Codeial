@@ -1,6 +1,10 @@
 // importing models/users.js file -->
 // because to find emails in database if presents return error for sign up page
+const res = require('express/lib/response');
 const User = require('../models/users');
+const { use } = require('passport');
+const fs = require('fs');
+const path = require('path');
 
 // rendering users url
 module.exports.postProfile = function (req, resp) {
@@ -22,26 +26,6 @@ module.exports.Profile = function (req, resp) {
         })
 
     })
-
-    // Update Controller
-    module.exports.update = function (req, resp) {
-
-        // if current logged in user matches then -->
-        if (req.user.id == req.params.id) {
-
-            User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
-                console.log(err);
-
-                return resp.redirect('back');
-            });
-
-        } else {
-            return resp.status(401).send('Unauthorized');
-        }
-
-    }
-
-
     // show details of signed user --->
     // if (req.cookies.user_id) {
     //     User.findById(req.cookies.user_id, function (err, user) {
@@ -59,6 +43,85 @@ module.exports.Profile = function (req, resp) {
     // else {
     //     return resp.redirect('/users/sign-in');
     // }
+}
+
+// Update Controller ----->
+module.exports.update = async function (req, resp) {
+
+    // if current logged in user matches then -->
+    // if (req.user.id == req.params.id) {
+
+    //     User.findByIdAndUpdate(req.params.id, req.body, (err, user)=> {
+    //         if(err){
+    //             console.log("error in Updating User");
+    //         }
+    //         else{
+    //             console.log(user);
+    //         }
+    //         // console.log(err);
+    //         console.log("User Updated Successfully: ",user);
+
+    //         return resp.redirect('back');
+    //     });
+
+    // } else {
+    //     return resp.status(401).send('Unauthorized');
+    // }
+
+    if (req.user.id == req.params.id) {
+
+        try {
+            // 1 find the user first 
+            let user = await User.findById(req.params.id);
+            //
+            User.uploadedAvatar(req, resp, function (err) {
+                if (err) {
+                    console.log("***** Multer ***** : ", err);
+                }
+                // console.log(req.file);
+
+                user.name = req.body.name;
+                user.email = req.body.email;
+
+                if (req.file) {
+                    // to unlink the avatar if upload the another image and it does not store the older avatar--->
+                    if(user.avatar){
+                        fs.unlinkSync(path.join(__dirname, '..', user.avatar));
+                    }
+                    
+                    // user.avatar current user and User.avatarPath -> file Path + req.file.filename -> file that saves 
+                    // this is saving the path og uploaded file in the avatar field in the user -->
+                    user.avatar = User.avatarPath + '/' + req.file.filename;
+                    req.flash('success', 'Your Avatar Uploaded Successfully');
+
+                }
+                
+                if (!req.file) {
+                    
+                    req.flash('error', 'Please Choose Your Avatar!');
+
+                }
+                // and last save the user -->
+                user.save();
+                // return back
+                return resp.redirect('back');
+
+            });
+        }
+
+        catch (err) {
+            req.flash('error', err);
+            return resp.redirect('back');
+
+        }
+
+    } else {
+        req.flash('error', 'Unauthorized');
+        return resp.status(401).send('Unauthorized');
+
+    }
+
+
 }
 
 // rendering sign up url
@@ -91,17 +154,22 @@ module.exports.create = function (req, resp) {
 
     // if in database already email register then it will not create it will return back
     User.findOne({ email: req.body.email }, function (err, user) {
-        if (err) { console.log('Error in finding user in sign up'); return; }
+        if (req, err) {
+            console.log('Error in finding user in sign up');
+            return;
+        }
 
         // if user is not created already then it will create new one and redirects to sign in 
         if (!user) {
             User.create(req.body, function (err, user) {
                 if (err) { console.log('Error in while creating User while Sign Up'); return; }
 
+                req.flash('success', 'Account Created Successfully !');
                 return resp.redirect('/users/sign-in');
             })
 
         } else {
+            req.flash('error', 'User Already Exist');
             return resp.redirect('back');
         }
 

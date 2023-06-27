@@ -22,3 +22,8 @@ body{
     position: relative;
     top:100px ;
 }
+
+.avatarimg{
+    margin-top: 50px ; 
+    width :100px;
+}
